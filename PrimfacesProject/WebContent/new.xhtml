@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>HELLO</title>
+</h:head>
+<h:body>
+	<h1>hello</h1>
+	<style type="text/css">
+    .ui-datatable input {
+        box-sizing: border-box;
+        width: 100%;
+        -webkit-box-shadow: none;
+        box-shadow: none !important;
+    }
+</style>
+ 
+ <style type="text/css">
+    .ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-button-text-only .ui-button-text {
+        padding: 0.3em 0.4em;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        visibility: hidden;
+    }
+     
+    .ui-filter-column .ui-column-customfilter .custom-filter {
+        width: 100%;
+        box-sizing: border-box;
+    }
+     
+    .year-spinner input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+
+<h:form>
+    <p:dataTable var="car" value="#{dtPaginatorView.cars}" rows="10"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
+        <p:column filterBy="#{car.id}"  footerText="contains" filterMatchMode="contains" headerText="Id">
+            <h:outputText value="#{car.id}" />
+        </p:column>
+ 
+ 
+        <p:column filterBy="#{car.brand}"  footerText="exact" filterMatchMode="exact" headerText="randomBrand">
+            <h:outputText value="#{car.randomBrand}" />
+        </p:column>
+ 
+        <p:column filterBy="#{car.color}"  footerText="in" filterMatchMode="in" headerText="randomColor">
+            <h:outputText value="#{car.randomColor}" />
+        </p:column>
+        <p:column filterBy="#{car.price}"  footerText="custom (min)" filterFunction="#{dtFilterView.filterByPrice}" headerText="price">
+            <h:outputText value="#{car.price}" />
+        </p:column>
+ 
+ 
+        <f:facet name="paginatorTopLeft">
+            <p:commandButton type="button" icon="pi pi-refresh" />
+        </f:facet>
+ 
+        <f:facet name="paginatorBottomRight">
+            <p:commandButton type="button" icon="pi pi-cloud-upload" />
+        </f:facet>
+ 
+    </p:dataTable>
+</h:form>s
+</h:body>
+</html>
